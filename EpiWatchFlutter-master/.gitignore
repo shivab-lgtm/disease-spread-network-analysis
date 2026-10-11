@@ -1,0 +1,45 @@
+# Flutter / Dart
+app/build/
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/windows/flutter/ephemeral/
+app/android/.gradle/
+app/android/build/
+app/android/app/build/
+**/build/
+app/android/local.properties
+app/**/*.g.dart
+app/**/*.freezed.dart
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets and local config
+.env
+*.local
+
+# Logs
+*.log
+
+# Local ML datasets and model artifacts
+/data/
+
+# Editors / OS
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+devtools_options.yaml
+
+# Internal planning docs
+docs/
+ML_PLAN.md
+TESTING_DATA.md
+CLAUDE.md

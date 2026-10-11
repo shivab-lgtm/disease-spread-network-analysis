@@ -1,0 +1,151 @@
+report_id,report_date,disease_diagnosed,facility_name,facility_type,district_region,state,latitude,longitude,new_cases,patient_age_group
+REP-1001,2026-12-08,Unknown Viral Fever,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,32,Adult
+REP-1002,2026-04-08,viral fever,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,33,Senior
+REP-1003,2026-06-08,Gastroenteritis,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,27,Senior
+REP-1004,2026-12-08,viral fever,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,17,Adult
+REP-1005,2026-03-08,acute diarrhea / gastro,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,28,Senior
+REP-1006,2026-08-08,dengue,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,29,Senior
+REP-1007,2026-08-02,acute diarrhea / gastro,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,18,Senior
+REP-1008,2026-08-05,pyrexia unknown origin,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,52,
+REP-1009,2026-08-14,acute respiratory infection,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,15,
+REP-1010,2026-02-08,Influenza A,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,48,Senior
+REP-1011,2026-03-08,Typhoid,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,37,Adult
+REP-1012,2026-08-09,viral fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,6,Adult
+REP-1013,2026-08-11,Gastroenteritis,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,54,Pediatric
+REP-1014,2026-08-16,dengue,Dadar Central Clinic,Clinic,Mumbai City,Maharashtra,19.0178,72.8478,24,
+REP-1015,2026-04-08,pyrexia unknown origin,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,42,Pediatric
+REP-1016,2026-04-08,Flu / Influenza,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,22,
+REP-1017,2026-02-08,gastroenteritis,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,11,
+REP-1018,2026-08-07,Acute Respiratory Syndrome,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,51,Senior
+REP-1019,2026-08-08,Dengue Fever,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,40,Adult
+REP-1020,2026-08-07,gastroenteritis,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,8,Pediatric
+REP-1021,2026-08-16,pyrexia unknown origin,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,36,Pediatric
+REP-1022,2026-12-08,Acute Respiratory Syndrome,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,35,Pediatric
+REP-1023,2026-12-08,Unknown Viral Fever,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,43,Adult
+REP-1024,2026-08-05,Typhoid,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,30,Pediatric
+REP-1025,2026-08-02,Unknown Viral Fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,39,Pediatric
+REP-1026,2026-08-13,acute diarrhea / gastro,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,46,Adult
+REP-1027,2026-05-08,dengue fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,43,Pediatric
+REP-1028,2026-08-14,Acute Respiratory Syndrome,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,32,Senior
+REP-1029,2026-07-08,pyrexia unknown origin,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,40,Adult
+REP-1030,2026-08-03,pyrexia unknown origin,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,32,Pediatric
+REP-1031,2026-08-15,dengue,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,11,Senior
+REP-1032,2026-08-06,acute respiratory infection,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,55,
+REP-1033,2026-08-08,dengue,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,27,Senior
+REP-1034,2026-08-14,typhoid fever,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,37,
+REP-1035,2026-06-08,viral fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,51,Senior
+REP-1036,2026-08-15,pyrexia unknown origin,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,51,Pediatric
+REP-1037,2026-05-08,Influenza A,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,37,Senior
+REP-1038,2026-08-13,gastroenteritis,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,41,Senior
+REP-1039,2026-08-08,Cholera,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,48,Pediatric
+REP-1040,2026-08-15,acute respiratory infection,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,24,Pediatric
+REP-1041,2026-08-16,Unknown Viral Fever,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,49,
+REP-1042,2026-04-08,covid-19,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,16,
+REP-1043,2026-08-06,pyrexia unknown origin,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,53,
+REP-1044,2026-08-09,Typhoid,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,45,Pediatric
+REP-1045,2026-08-03,acute respiratory infection,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,19,
+REP-1046,2026-12-08,Cholera,Dadar Central Clinic,Clinic,Mumbai City,Maharashtra,19.0178,72.8478,49,Adult
+REP-1047,2026-04-08,pyrexia unknown origin,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,36,Pediatric
+REP-1048,2026-08-13,gastroenteritis,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,39,Adult
+REP-1049,2026-08-04,acute diarrhea / gastro,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,34,Senior
+REP-1050,2026-06-08,Unknown Viral Fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,19,Adult
+REP-1051,2026-08-15,Dengue,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,12,Pediatric
+REP-1052,2026-02-08,dengue fever,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,42,Adult
+REP-1053,2026-08-16,Dengue Fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,54,Senior
+REP-1054,2026-08-09,covid-19,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,11,
+REP-1055,2026-08-08,viral fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,32,Senior
+REP-1056,2026-08-15,pyrexia unknown origin,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,29,Senior
+REP-1057,2026-08-05,pyrexia unknown origin,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,40,Adult
+REP-1058,2026-08-01,Cholera,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,10,Senior
+REP-1059,2026-08-11,typhoid fever,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,26,Senior
+REP-1060,2026-03-08,pyrexia unknown origin,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,17,Pediatric
+REP-1061,2026-04-08,dengue fever,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,28,Pediatric
+REP-1062,2026-08-03,Typhoid,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,45,
+REP-1063,2026-02-08,typhoid fever,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,9,
+REP-1064,2026-02-08,acute respiratory infection,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,40,
+REP-1065,2026-08-13,Unknown Viral Fever,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,52,Adult
+REP-1066,2026-08-08,covid-19,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,49,
+REP-1067,2026-08-14,dengue fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,42,Pediatric
+REP-1068,2026-08-13,dengue fever,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,52,Senior
+REP-1069,2026-08-02,Cholera,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,43,Adult
+REP-1070,2026-08-01,pyrexia unknown origin,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,53,Senior
+REP-1071,2026-08-02,Cholera,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,35,Senior
+REP-1072,2026-08-07,Typhoid,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,53,Adult
+REP-1073,2026-08-11,Influenza A,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,34,
+REP-1074,2026-08-11,dengue fever,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,13,Senior
+REP-1075,2026-08-01,Typhoid,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,40,
+REP-1076,2026-08-16,Dengue,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,23,Senior
+REP-1077,2026-08-03,pyrexia unknown origin,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,9,Senior
+REP-1078,2026-08-15,pyrexia unknown origin,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,36,Pediatric
+REP-1079,2026-08-16,Typhoid,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,20,
+REP-1080,2026-01-08,Dengue,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,13,Senior
+REP-1081,2026-08-09,Dengue Fever,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,55,Senior
+REP-1082,2026-08-16,Typhoid,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,53,
+REP-1083,2026-08-14,Gastroenteritis,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,50,Adult
+REP-1084,2026-06-08,typhoid fever,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,32,Pediatric
+REP-1085,2026-08-09,gastroenteritis,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,42,Pediatric
+REP-1086,2026-08-02,Unknown Viral Fever,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,33,Senior
+REP-1087,2026-08-07,acute respiratory infection,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,41,Senior
+REP-1088,2026-08-09,Flu / Influenza,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,23,Pediatric
+REP-1089,2026-08-14,Dengue Fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,46,Adult
+REP-1090,2026-08-04,gastroenteritis,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,13,Senior
+REP-1091,2026-08-08,Typhoid,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,9,Pediatric
+REP-1092,2026-08-08,Unknown Viral Fever,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,28,Senior
+REP-1093,2026-08-13,viral fever,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,19,Adult
+REP-1094,2026-02-08,Gastroenteritis,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,20,Pediatric
+REP-1095,2026-08-14,Dengue,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,11,
+REP-1096,2026-06-08,Influenza A,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,39,Senior
+REP-1097,2026-01-08,Dengue Fever,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,55,Senior
+REP-1098,2026-08-06,dengue,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,54,Pediatric
+REP-1099,2026-08-01,Influenza A,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,13,Adult
+REP-1100,2026-08-02,Unknown Viral Fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,35,
+REP-1101,2026-08-08,viral fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,46,Adult
+REP-1102,2026-08-06,Acute Respiratory Syndrome,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,43,Pediatric
+REP-1103,2026-05-08,pyrexia unknown origin,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,34,
+REP-1104,2026-04-08,Cholera,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,31,Senior
+REP-1105,2026-08-02,Dengue,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,10,Adult
+REP-1106,2026-08-06,pyrexia unknown origin,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,47,Adult
+REP-1107,2026-05-08,Typhoid,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,27,Adult
+REP-1108,2026-04-08,Typhoid,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,32,Adult
+REP-1109,2026-12-08,dengue,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,47,
+REP-1110,2026-08-06,Cholera,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,15,Senior
+REP-1111,2026-08-15,Unknown Viral Fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,10,Senior
+REP-1112,2026-07-08,COVID-19,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,12,Senior
+REP-1113,2026-08-04,dengue fever,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,54,Pediatric
+REP-1114,2026-04-08,pyrexia unknown origin,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,37,Senior
+REP-1115,2026-07-08,Typhoid,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,41,
+REP-1116,2026-07-08,Typhoid,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,11,Pediatric
+REP-1117,2026-10-08,Dengue Fever,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,45,Adult
+REP-1118,2026-08-04,dengue fever,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,16,Pediatric
+REP-1119,2026-08-14,acute diarrhea / gastro,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,25,Pediatric
+REP-1120,2026-05-08,Unknown Viral Fever,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,34,
+REP-1121,2026-08-08,viral fever,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,42,Adult
+REP-1122,2026-08-06,Gastroenteritis,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,50,Adult
+REP-1123,2026-05-08,typhoid fever,Dadar Central Clinic,Clinic,Mumbai City,Maharashtra,19.0178,72.8478,29,
+REP-1124,2026-08-05,acute diarrhea / gastro,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,51,Pediatric
+REP-1125,2026-08-13,gastroenteritis,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,50,Adult
+REP-1126,2026-08-14,Unknown Viral Fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,47,
+REP-1127,2026-08-02,dengue,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,23,Adult
+REP-1128,2026-08-08,Unknown Viral Fever,KEM Hospital Parel,Hospital,Mumbai City,Maharashtra,18.9986,72.8436,7,
+REP-1129,2026-08-09,dengue fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,17,Senior
+REP-1130,2026-08-05,dengue,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,8,
+REP-1131,2026-10-08,typhoid fever,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,14,
+REP-1132,2026-04-08,viral fever,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,29,Adult
+REP-1133,2026-01-08,dengue,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,23,
+REP-1134,2026-02-08,Dengue,Dadar Central Clinic,Clinic,Mumbai City,Maharashtra,19.0178,72.8478,54,Senior
+REP-1135,2026-08-13,covid-19,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,39,Adult
+REP-1136,2026-06-08,Flu / Influenza,Kurla West Polyclinic,Polyclinic,Mumbai Suburban,Maharashtra,19.0657,72.8792,9,Adult
+REP-1137,2026-04-08,COVID-19,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,51,Adult
+REP-1138,2026-08-14,Cholera,Thane Civil Sentinel,Hospital,Thane,Maharashtra,19.197,72.976,16,Pediatric
+REP-1139,2026-08-07,Typhoid,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,39,
+REP-1140,2026-02-08,typhoid fever,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,28,
+REP-1141,2026-08-05,Typhoid,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,10,
+REP-1142,2026-05-08,Typhoid,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,24,
+REP-1143,2026-07-08,Typhoid,Byculla Municipal Dispensary,Clinic,Mumbai City,Maharashtra,18.975,72.833,22,Adult
+REP-1144,2026-08-08,pyrexia unknown origin,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,7,Pediatric
+REP-1145,2026-06-08,Dengue,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,28,
+REP-1146,2026-03-08,Influenza A,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,36,
+REP-1147,2026-02-08,gastroenteritis,Sion Municipal Hospital,Hospital,Mumbai Suburban,Maharashtra,19.0356,72.8601,13,Adult
+REP-1148,2026-06-08,Typhoid,Ruby Hall Clinic,Hospital,Pune,Maharashtra,18.5204,73.8567,50,Adult
+REP-1149,2026-04-08,Typhoid,Bandra Sentinel Center,Hospital,Mumbai Suburban,Maharashtra,19.0596,72.8295,12,Pediatric
+REP-1150,2026-08-13,Unknown Viral Fever,Dadar Central Clinic,Clinic,Mumbai City,Maharashtra,19.0178,72.8478,10,Adult

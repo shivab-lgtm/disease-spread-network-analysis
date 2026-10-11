@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+sqlalchemy>=2.0
+psycopg[binary]
+python-dotenv
+pydantic>=2.0
+argon2-cffi
+pyjwt
+pytest
+httpx
+redis
+neo4j
+scikit-learn
+joblib
+matplotlib
+deep-translator
+google-genai

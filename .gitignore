@@ -1,0 +1,19 @@
+# Flutter and Dart build artifacts
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.pub-cache/
+**/.pub/
+
+# Python artifacts
+**/__pycache__/
+*.pyc
+**/.ipynb_checkpoints/
+
+# System and IDE
+.DS_Store
+Thumbs.db
+**/.idea/
+**/.vscode/
+*.log

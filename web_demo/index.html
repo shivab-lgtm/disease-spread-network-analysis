@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EpiWatch — Disease Spread Network Analysis</title>
+  
+  <!-- Leaflet GIS Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Leaflet GIS Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #EDF3EF;
+      --bg-card: #FFFFFF;
+      --bg-secondary: #F4F8F5;
+      --sidebar-bg: #1B4D3E;
+      --sidebar-hover: #245E4D;
+      --sidebar-active: #0F766E;
+      --text-primary: #1B332A;
+      --text-secondary: #4A665E;
+      --text-muted: #789088;
+      --accent-mint: #10B981;
+      --accent-teal: #0F766E;
+      --status-critical: #DC2626;
+      --status-elevated: #EA580C;
+      --status-monitoring: #CA8A04;
+      --border-color: #D1DFD6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 270px;
+      background-color: var(--sidebar-bg);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      z-index: 100;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px 20px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent-teal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .role-badge {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--accent-mint);
+      color: #06301F;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .user-caption {
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-item:hover {
+      background-color: var(--sidebar-hover);
+      color: #fff;
+    }
+
+    .nav-item.active {
+      background-color: var(--sidebar-active);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-icon {
+      font-size: 18px;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 28px 36px;
+    }
+
+    .screen-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .screen-container.active {
+      display: block;
+    }
+
+    /* Breadcrumbs & Headers */
+    .breadcrumbs {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .breadcrumbs span.current {
+      color: var(--accent-teal);
+      font-weight: 600;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .metadata-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .badge-critical {
+      background: #FDE8E8;
+      color: #E02424;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 9px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-outline {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* Layout Grids */
+    .grid-clusters {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    /* Map Box */
+    .map-wrapper {
+      position: relative;
+      height: 480px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    #gis-map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .floating-signal-box {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      width: 250px;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      z-index: 1000;
+    }
+
+    .signal-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .signal-desc {
+      font-size: 10.5px;
+      color: var(--text-secondary);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .intensity-bar {
+      height: 6px;
+      background: linear-gradient(to right, #10B981, #F59E0B, #EF4444);
+      border-radius: 4px;
+      margin: 4px 0 10px 0;
+    }
+
+    .filter-options {
+      display: flex;
+      gap: 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .filter-options label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .floating-legend {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 10.5px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* Cluster Summary Panel */
+    .summary-heading {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #F0F4F2;
+      font-size: 13px;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+    }
+
+    .stat-val {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .facility-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .facility-item {
+      padding: 10px 12px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+    }
+
+    .facility-tag {
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .tag-critical { background: #FDE8E8; color: #DC2626; }
+    .tag-warning { background: #FEF3C7; color: #D97706; }
+    .tag-normal { background: #D1FAE5; color: #059669; }
+
+    /* Trends KPI Cards */
+    .trends-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .kpi-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .kpi-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .kpi-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .kpi-delta {
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .text-up { color: #DC2626; }
+    .text-down { color: #059669; }
+
+    /* Tables */
+    .table-responsive {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .table-responsive th {
+      text-align: left;
+      padding: 12px;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .table-responsive td {
+      padding: 12px;
+      border-bottom: 1px solid #F0F4F2;
+    }
+
+    /* Custom Leaflet Pin */
+    .custom-map-pin {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-row">
+        <div class="brand-icon">🌐</div>
+        <div class="brand-title">EpiWatch</div>
+      </div>
+      <div class="role-badge">NETWORK SURVEILLANCE</div>
+      <div class="user-caption">Disease Spread Analyst: Dr. Sharma</div>
+    </div>
+
+    <ul class="nav-list">
+      <li class="nav-item active" onclick="switchTab('clusters')">
+        <span class="nav-icon">🗺️</span>
+        <span>Geographic Clusters (GIS)</span>
+      </li>
+      <li class="nav-item" onclick="switchTab('trends')">
+        <span class="nav-icon">📈</span>
+        <span>Disease Trends</span>
+      </li>
+      <li class="nav-item" onclick="switchTab('alerts')">
+        <span class="nav-icon">⚠️</span>
+        <span>Outbreak Alerts</span>
+      </li>
+      <li class="nav-item" onclick="switchTab('surveillance')">
+        <span class="nav-icon">📡</span>
+        <span>Regional Surveillance</span>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      Disease Spread Network Analysis System<br>
+      GIS Visualization & Neo4j Integration
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+
+    <!-- Screen 1: Geographic Clusters (GIS) -->
+    <div id="screen-clusters" class="screen-container active">
+      <div class="breadcrumbs">
+        <span>Surveillance</span> &gt; <span>Geographic Clusters</span> &gt; <span class="current">Mumbai Respiratory Signal</span>
+      </div>
+      <h1 class="page-title">Respiratory Illness Cluster — Mumbai Metropolitan Region</h1>
+      
+      <div class="metadata-badges">
+        <span class="badge-critical">HIGH PRIORITY</span>
+        <span class="badge-outline">Detected: 16 Aug 2026, 14:32</span>
+        <span class="badge-outline">Confidence: 87%</span>
+        <span class="badge-outline">Method: GIS Spatial Cluster + Graph Centrality</span>
+      </div>
+
+      <div class="grid-clusters">
+        <!-- GIS Map Box -->
+        <div class="map-wrapper">
+          <div id="gis-map"></div>
+
+          <!-- Floating Signal Core Card -->
+          <div class="floating-signal-box">
+            <div class="signal-title">
+              <span>📍</span> Signal Core Detection
+            </div>
+            <div class="signal-desc">
+              High-density spatial cluster flagged across central urban wards. Correlates inter-facility spread vectors.
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:10.5px; font-weight:700;">
+              <span>Cluster Intensity</span>
+              <span>78%</span>
+            </div>
+            <div class="intensity-bar"></div>
+            <div class="filter-options">
+              <label><input type="checkbox" id="chk-hospital" checked onchange="updateMapPins()"> Hospitals</label>
+              <label><input type="checkbox" id="chk-clinic" checked onchange="updateMapPins()"> Clinics</label>
+            </div>
+          </div>
+
+          <!-- Floating Legend -->
+          <div class="floating-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#D32F2F"></div> High Hospital Load</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#E65100"></div> Clinic Spike (+40%)</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#1B5E20"></div> Baseline Monitoring</div>
+          </div>
+        </div>
+
+        <!-- Cluster Summary Card -->
+        <div class="card">
+          <div class="summary-heading">
+            <span>Cluster Surveillance Summary</span>
+            <span style="font-size:11px; color:var(--accent-teal); font-weight:600;">Active Outbreak</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Total Cluster Volume (7d)</span>
+            <span class="stat-val" style="color:#DC2626;">171 cases (+48%)</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Primary Pathogen</span>
+            <span class="stat-val">Acute Respiratory Infection</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Spatial Radius</span>
+            <span class="stat-val">8.4 km radius</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Affected Region</span>
+            <span class="stat-val">Mumbai City & Suburban</span>
+          </div>
+
+          <div style="margin-top:16px; font-size:12px; font-weight:700; color:var(--text-secondary);">
+            CONTRIBUTING HEALTHCARE FACILITIES
+          </div>
+
+          <div class="facility-list">
+            <div class="facility-item">
+              <div>
+                <strong>KEM Hospital Parel</strong> (Hospital)<br>
+                <span style="font-size:11px; color:var(--text-muted);">Mumbai City • 42 cases/wk</span>
+              </div>
+              <span class="facility-tag tag-critical">+52% Spike</span>
+            </div>
+
+            <div class="facility-item">
+              <div>
+                <strong>Sion Municipal Hospital</strong> (Hospital)<br>
+                <span style="font-size:11px; color:var(--text-muted);">Mumbai Suburban • 38 cases/wk</span>
+              </div>
+              <span class="facility-tag tag-critical">+40% Spike</span>
+            </div>
+
+            <div class="facility-item">
+              <div>
+                <strong>Dadar Central Clinic</strong> (Clinic)<br>
+                <span style="font-size:11px; color:var(--text-muted);">Mumbai City • 26 cases/wk</span>
+              </div>
+              <span class="facility-tag tag-warning">+65% Spike</span>
+            </div>
+
+            <div class="facility-item">
+              <div>
+                <strong>Kurla West Polyclinic</strong> (Polyclinic)<br>
+                <span style="font-size:11px; color:var(--text-muted);">Mumbai Suburban • 19 cases/wk</span>
+              </div>
+              <span class="facility-tag tag-warning">+35% Spike</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendation Banner -->
+      <div class="card" style="background:#F0FDF4; border-color:#BBF7D0; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <h4 style="color:#166534; font-size:14px; margin-bottom:4px;">Recommended Epidemiological Intervention</h4>
+          <p style="color:#15803D; font-size:12.5px;">Neo4j centrality identified KEM Hospital and Sion Hospital as primary transmission nodes. Trigger contact tracing in Ward F-South and Ward L.</p>
+        </div>
+        <button style="background:#166534; color:#fff; border:none; padding:10px 16px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer;">
+          Export GIS Shapefile
+        </button>
+      </div>
+    </div>
+
+    <!-- Screen 2: Disease Trends -->
+    <div id="screen-trends" class="screen-container">
+      <h1 class="page-title">Disease Occurrence & Spread Trends</h1>
+      <p style="color:var(--text-secondary); font-size:13px; margin-bottom:20px;">
+        Temporal monitoring across syndromic disease classifications and facility report volumes.
+      </p>
+
+      <!-- KPI Row -->
+      <div class="trends-kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-title">
+            <span>Respiratory Syndrome</span>
+            <span class="facility-tag tag-critical">Elevated</span>
+          </div>
+          <div class="kpi-val">12,482</div>
+          <div class="kpi-delta text-up">↑ 4.2% (7d) • High Growth</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">
+            <span>Vector-Borne (Dengue)</span>
+            <span class="facility-tag tag-warning">Rising Alert</span>
+          </div>
+          <div class="kpi-val">5,930</div>
+          <div class="kpi-delta text-up">↑ 12.4% (7d) • Monsoon Peak</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">
+            <span>Gastrointestinal</span>
+            <span class="facility-tag tag-normal">Stable</span>
+          </div>
+          <div class="kpi-val">8,104</div>
+          <div class="kpi-delta text-down">↓ 0.8% (7d) • Baseline</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">
+            <span>Typhoid / Enteric</span>
+            <span class="facility-tag tag-normal">Stable</span>
+          </div>
+          <div class="kpi-val">3,420</div>
+          <div class="kpi-delta text-down">↓ 1.2% (7d) • Controlled</div>
+        </div>
+      </div>
+
+      <!-- Line Chart -->
+      <div class="card">
+        <h3 style="font-size:16px; font-weight:700; margin-bottom:6px;">Reported Disease Activity Trends (Day-by-Day Trajectory)</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Comparative case incidence over 14-day rolling window.</p>
+        <div style="height: 350px;">
+          <canvas id="trendsChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3: Outbreak Alerts -->
+    <div id="screen-alerts" class="screen-container">
+      <h1 class="page-title">Real-Time Outbreak & Network Anomaly Alerts</h1>
+      <p style="color:var(--text-secondary); font-size:13px; margin-bottom:20px;">
+        Statistical Process Control and Isolation Forest anomaly detection across sentinel facilities.
+      </p>
+
+      <div class="card">
+        <table class="table-responsive">
+          <thead>
+            <tr>
+              <th>Alert ID</th>
+              <th>Severity</th>
+              <th>Anomaly Description</th>
+              <th>Reporting Facility & Region</th>
+              <th>Detected Date</th>
+              <th>Confidence</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ALT-ILI01</strong></td>
+              <td><span class="facility-tag tag-critical">CRITICAL</span></td>
+              <td>Acute Respiratory Syndrome Spike (+38% above 3-sigma)</td>
+              <td>KEM Hospital Parel (Mumbai City)</td>
+              <td>16 Aug 2026, 14:32</td>
+              <td><strong>92%</strong></td>
+              <td><span style="color:#DC2626; font-weight:600;">Active Investigation</span></td>
+            </tr>
+            <tr>
+              <td><strong>ALT-DEN02</strong></td>
+              <td><span class="facility-tag tag-warning">HIGH</span></td>
+              <td>Vector-borne Dengue Clustering (+65% weekly delta)</td>
+              <td>Dadar Central Clinic (Mumbai City)</td>
+              <td>16 Aug 2026, 11:15</td>
+              <td><strong>84%</strong></td>
+              <td><span style="color:#D97706; font-weight:600;">Field Team Dispatched</span></td>
+            </tr>
+            <tr>
+              <td><strong>ALT-RESP03</strong></td>
+              <td><span class="facility-tag tag-warning">HIGH</span></td>
+              <td>Pediatric Bronchiolitis Transmission Vector</td>
+              <td>Sion Municipal Hospital (Mumbai Suburban)</td>
+              <td>15 Aug 2026, 18:40</td>
+              <td><strong>78%</strong></td>
+              <td><span style="color:#D97706; font-weight:600;">Under Review</span></td>
+            </tr>
+            <tr>
+              <td><strong>ALT-FEV04</strong></td>
+              <td><span class="facility-tag tag-normal">MEDIUM</span></td>
+              <td>Atypical Fever Spike (Syndromic baseline breach)</td>
+              <td>Kurla West Polyclinic (Mumbai Suburban)</td>
+              <td>14 Aug 2026, 09:20</td>
+              <td><strong>65%</strong></td>
+              <td><span style="color:#059669; font-weight:600;">Acknowledged</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Screen 4: Regional Surveillance -->
+    <div id="screen-surveillance" class="screen-container">
+      <h1 class="page-title">Regional Healthcare Network Overview</h1>
+      <p style="color:var(--text-secondary); font-size:13px; margin-bottom:20px;">
+        Statewide surveillance summary linking facilities, patient encounters, and administrative boundaries.
+      </p>
+
+      <div class="trends-kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-title">FACILITIES REPORTING</div>
+          <div class="kpi-val">2,481</div>
+          <div class="kpi-delta text-down">↑ 6.2% vs yesterday</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">TOTAL REPORTS TODAY</div>
+          <div class="kpi-val">48,392</div>
+          <div class="kpi-delta text-down">↑ 11.4% sentinel coverage</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">EMERGING SIGNALS</div>
+          <div class="kpi-val" style="color:#EA580C;">4</div>
+          <div class="kpi-delta text-up">● 2 high priority clusters</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">ACTIVE INTERVENTIONS</div>
+          <div class="kpi-val" style="color:#DC2626;">3</div>
+          <div class="kpi-delta text-up">● Critical containment</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:16px; font-weight:700; margin-bottom:14px;">Statewide Cases by Diagnosis (30-Day Aggregate)</h3>
+        <div style="height: 280px;">
+          <canvas id="diagnosesBarChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.screen-container').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+      document.getElementById('screen-' + tabId).classList.add('active');
+
+      const tabs = ['clusters', 'trends', 'alerts', 'surveillance'];
+      const index = tabs.indexOf(tabId);
+      if (index !== -1) {
+        document.querySelectorAll('.nav-item')[index].classList.add('active');
+      }
+
+      if (tabId === 'clusters' && map) {
+        setTimeout(() => map.invalidateSize(), 200);
+      }
+    }
+
+    // Leaflet GIS Map Setup
+    let map;
+    let markersLayer;
+
+    const facilities = [
+      { name: "KEM Hospital Parel", type: "Hospital", lat: 18.9986, lng: 72.8436, cases: "42 cases / wk (+52%)", category: "high" },
+      { name: "Sion Municipal Hospital", type: "Hospital", lat: 19.0356, lng: 72.8601, cases: "38 cases / wk (+40%)", category: "high" },
+      { name: "Dadar Central Clinic", type: "Clinic", lat: 19.0178, lng: 72.8478, cases: "26 cases / wk (+65%)", category: "spike" },
+      { name: "Kurla West Polyclinic", type: "Clinic", lat: 19.0657, lng: 72.8792, cases: "19 cases / wk (+35%)", category: "spike" },
+      { name: "Bandra Sentinel Center", type: "Hospital", lat: 19.0596, lng: 72.8295, cases: "14 cases / wk (Stable)", category: "monitoring" },
+      { name: "Thane Civil Sentinel", type: "Hospital", lat: 19.1970, lng: 72.9760, cases: "12 cases / wk (Baseline)", category: "monitoring" },
+      { name: "Byculla Municipal Dispensary", type: "Clinic", lat: 18.9750, lng: 72.8330, cases: "20 cases / wk (+45%)", category: "high" }
+    ];
+
+    function initMap() {
+      const clusterCenter = [19.0178, 72.8478];
+      map = L.map('gis-map').setView(clusterCenter, 11);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Outbreak Radius Circles
+      L.circle(clusterCenter, {
+        color: '#E02424',
+        fillColor: '#E02424',
+        fillOpacity: 0.12,
+        radius: 6500,
+        weight: 1.5
+      }).addTo(map);
+
+      L.circle(clusterCenter, {
+        color: '#F05252',
+        fillColor: '#F05252',
+        fillOpacity: 0.18,
+        radius: 3500,
+        weight: 1.5
+      }).addTo(map);
+
+      markersLayer = L.layerGroup().addTo(map);
+      updateMapPins();
+    }
+
+    function updateMapPins() {
+      if (!markersLayer) return;
+      markersLayer.clearLayers();
+
+      const showHospital = document.getElementById('chk-hospital').checked;
+      const showClinic = document.getElementById('chk-clinic').checked;
+
+      facilities.forEach(f => {
+        if (f.type === 'Hospital' && !showHospital) return;
+        if (f.type === 'Clinic' && !showClinic) return;
+
+        let color = '#1B5E20';
+        if (f.category === 'high') color = '#D32F2F';
+        if (f.category === 'spike') color = '#E65100';
+
+        const customIcon = L.divIcon({
+          className: 'custom-pin-wrapper',
+          html: `<div style="background:${color}; width:22px; height:22px; border-radius:50%; border:2px solid white; box-shadow:0 2px 6px rgba(0,0,0,0.35);"></div>`,
+          iconSize: [22, 22],
+          iconAnchor: [11, 11]
+        });
+
+        const marker = L.marker([f.lat, f.lng], { icon: customIcon });
+        marker.bindPopup(`<strong>${f.name}</strong><br>${f.type} • ${f.cases}`);
+        markersLayer.addLayer(marker);
+      });
+    }
+
+    // Chart.js Trends Setup
+    function initCharts() {
+      // Trends Line Chart
+      const ctxTrends = document.getElementById('trendsChart').getContext('2d');
+      new Chart(ctxTrends, {
+        type: 'line',
+        data: {
+          labels: ['01 Aug', '03 Aug', '05 Aug', '07 Aug', '09 Aug', '11 Aug', '13 Aug', '15 Aug'],
+          datasets: [
+            {
+              label: 'Acute Respiratory Infection',
+              data: [42, 58, 75, 92, 118, 142, 165, 188],
+              borderColor: '#DC2626',
+              backgroundColor: 'rgba(220, 38, 38, 0.08)',
+              borderWidth: 2.5,
+              tension: 0.35,
+              fill: true
+            },
+            {
+              label: 'Dengue Fever',
+              data: [18, 24, 32, 45, 59, 72, 81, 95],
+              borderColor: '#EA580C',
+              borderWidth: 2,
+              tension: 0.35
+            },
+            {
+              label: 'Gastroenteritis',
+              data: [30, 32, 29, 34, 31, 33, 30, 32],
+              borderColor: '#2563EB',
+              borderWidth: 2,
+              tension: 0.35
+            },
+            {
+              label: 'Typhoid',
+              data: [14, 15, 12, 16, 14, 15, 13, 14],
+              borderColor: '#10B981',
+              borderWidth: 2,
+              tension: 0.35
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top' }
+          },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#E5E7EB' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+
+      // Diagnosis Bar Chart
+      const ctxBars = document.getElementById('diagnosesBarChart').getContext('2d');
+      new Chart(ctxBars, {
+        type: 'bar',
+        data: {
+          labels: ['Acute Respiratory Infection', 'COVID-19', 'Dengue Fever', 'Gastroenteritis', 'Typhoid', 'Influenza A'],
+          datasets: [{
+            label: 'Confirmed Cases (30d)',
+            data: [1482, 940, 593, 412, 285, 198],
+            backgroundColor: '#2A78D6',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#E5E7EB' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    window.onload = function() {
+      initMap();
+      initCharts();
+    };
+  </script>
+</body>
+</html>
